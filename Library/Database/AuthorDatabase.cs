@@ -6,7 +6,7 @@ namespace Library.database
     {
         public override bool HasElement(Author author)
         {
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 string elementFullName = element.FullName.ToLower();
                 string newAuthorFullName = author.FullName.ToLower();

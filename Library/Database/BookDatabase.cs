@@ -7,23 +7,23 @@ namespace Library.database
     {
         public override bool HasElement(Book book)
         {
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 string elementName = element.Name.ToLower();
                 Author elementAuthor = element.Author;
 
-                if (elementName == element.Name.ToLower() && elementAuthor.FullName == book.Author.FullName)
+                if (elementName == book.Name.ToLower() && elementAuthor.FullName == book.Author.FullName)
                     return true;
             }
             
             return false;
         }
 
-        public List<Book> GetByName(string name)
+        public List<Book> GetBooksByName(string name)
         {
             List<Book> foundedBooks = new List<Book>();
 
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 if (element.Name.ToLower() == name.ToLower())
                     foundedBooks.Add(element);
@@ -32,11 +32,11 @@ namespace Library.database
             return foundedBooks;
         }
         
-        public List<Book> GetByAuthor(string lastName)
+        public List<Book> GetBooksByAuthor(string lastName)
         {
             List<Book> foundedBooks = new List<Book>();
 
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 if (element.Author.LastName.ToLower() == lastName.ToLower())
                     foundedBooks.Add(element);
@@ -45,11 +45,11 @@ namespace Library.database
             return foundedBooks;
         }
         
-        public List<Book> GetByReleaseYear(int releaseYear)
+        public List<Book> GetBooksByReleaseYear(int releaseYear)
         {
             List<Book> foundedBooks = new List<Book>();
 
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 if (element.ReleaseYear == releaseYear)
                     foundedBooks.Add(element);
@@ -58,11 +58,11 @@ namespace Library.database
             return foundedBooks;
         }
         
-        public List<Book> GetByGenre(string genre)
+        public List<Book> GetBooksByGenre(string genre)
         {
             List<Book> foundedBooks = new List<Book>();
 
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 if (element.Genre.Name == genre)
                     foundedBooks.Add(element);

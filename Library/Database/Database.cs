@@ -4,14 +4,14 @@ namespace Library.database
 {
     public abstract class Database<T> where T : Model.Model
     {
-        protected readonly List<T> Repo = new List<T>();
+        protected readonly List<T> Elements = new List<T>();
         private int _nextId = 100;
         
-        public int Count => Repo.Count;
+        public int Count => Elements.Count;
 
         public void Add(T value)
         {
-            Repo.Add(value);
+            Elements.Add(value);
             _nextId++;
         }
 
@@ -22,12 +22,12 @@ namespace Library.database
 
         public T GetElementByIndex(int index)
         {
-            return Repo[index];
+            return Elements[index];
         }
         
         public T GetElementById(int id)
         {
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 if (element.Id == id)
                     return element;

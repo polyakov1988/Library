@@ -67,24 +67,24 @@ namespace Library.Service
             return booksAsString;
         }
         
-        public List<Book> GetByName(string name)
+        public List<Book> GetBooksByName(string name)
         {
-            return Database.GetByName(name);
+            return Database.GetBooksByName(name);
         }
         
-        public List<Book> GetByAuthor(string lastName)
+        public List<Book> GetBooksByAuthor(string lastName)
         {
-            return Database.GetByAuthor(lastName);
+            return Database.GetBooksByAuthor(lastName);
         }
         
-        public List<Book> GetByReleaseYear(int releaseYear)
+        public List<Book> GetBooksByReleaseYear(int releaseYear)
         {
-            return Database.GetByReleaseYear(releaseYear);
+            return Database.GetBooksByReleaseYear(releaseYear);
         }
         
-        public List<Book> GetByGenre(string genre)
+        public List<Book> GetBooksByGenre(string genre)
         {
-            return Database.GetByGenre(genre);
+            return Database.GetBooksByGenre(genre);
         }
 
         private string GetBookAsString(Book book)

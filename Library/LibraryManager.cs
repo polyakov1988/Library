@@ -333,7 +333,7 @@ namespace Library
                 return;
             }
 
-            List<Book> foundedBooks = _bookService.GetByName(_userInput);
+            List<Book> foundedBooks = _bookService.GetBooksByName(_userInput);
 
             ShowSearchResult(foundedBooks);
         }
@@ -349,7 +349,7 @@ namespace Library
                 return;
             }
 
-            List<Book> foundedBooks = _bookService.GetByAuthor(_userInput);
+            List<Book> foundedBooks = _bookService.GetBooksByAuthor(_userInput);
 
             ShowSearchResult(foundedBooks);
         }
@@ -371,7 +371,7 @@ namespace Library
                 }
             } while (isIdCorrect == false);
             
-            List<Book> foundedBooks = _bookService.GetByReleaseYear(year);
+            List<Book> foundedBooks = _bookService.GetBooksByReleaseYear(year);
             
             ShowSearchResult(foundedBooks);
         }
@@ -387,7 +387,7 @@ namespace Library
                 return;
             }
 
-            List<Book> foundedBooks = _bookService.GetByGenre(_userInput);
+            List<Book> foundedBooks = _bookService.GetBooksByGenre(_userInput);
 
             ShowSearchResult(foundedBooks);
         }

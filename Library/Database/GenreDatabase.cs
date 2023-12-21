@@ -6,7 +6,7 @@ namespace Library.database
     {
         public override bool HasElement(Genre genre)
         {
-            foreach (var element in Repo)
+            foreach (var element in Elements)
             {
                 string elementName = element.Name.ToLower();
 
