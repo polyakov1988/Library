@@ -70,5 +70,19 @@ namespace Library.database
 
             return foundedBooks;
         }
+
+        public bool Delete(int id)
+        {
+            Book book = GetElementById(id);
+
+            if (book == null)
+            {
+                return false;
+            }
+
+            Elements.Remove(book);
+
+            return true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Library.database;
 using Library.Menu;
 using Library.Model;
 using Library.Service;
@@ -10,9 +11,9 @@ namespace Library
     {
         private const string AddNewCommand = "0";
         
-        private readonly AuthorService _authorService = new AuthorService();
-        private readonly GenreService _genreService = new GenreService();
-        private readonly BookService _bookService = new BookService();
+        private readonly AuthorService _authorService = new AuthorService(new AuthorDatabase());
+        private readonly GenreService _genreService = new GenreService(new GenreDatabase());
+        private readonly BookService _bookService = new BookService(new BookDatabase());
         private readonly Renderer _renderer = new Renderer();
         
         private string _userInput;
@@ -286,12 +287,34 @@ namespace Library
         
         private void DeleteBook()
         {
-            _userInput = _renderer.WaitUserInput("Выберите автора или введите 0 чтобы добавить нового: ");
+            List<string> books = _bookService.GetAllElementsAsString();
+            
+            _renderer.DrawList(books);
+            
+            _userInput = _renderer.WaitUserInput("Выберите id книги, которую хотите удалить: ");
+            
+            bool isIdCorrect;
+            int id;
+
+            do
+            {
+                isIdCorrect = int.TryParse(_userInput, out id);
+
+                if (isIdCorrect == false || id < 0)
+                {
+                    _userInput = _renderer.WaitUserInput("Введите корректный id: ");
+                }
+            } while (isIdCorrect == false);
+
+            _bookService.Delete(id, out _message);
+            
+            _renderer.DrawMessage(_message);
         }
         
         private void ShowAllBooks()
         {
             List<string> books = _bookService.GetAllElementsAsString();
+            
             _renderer.DrawList(books);
             _renderer.DrawMessage("Для продолжения нажмите Enter");
         }

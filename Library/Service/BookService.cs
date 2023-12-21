@@ -6,10 +6,7 @@ namespace Library.Service
 {
     public class BookService : Service<BookDatabase, Book>
     {
-        public BookService()
-        {
-            Database = new BookDatabase();
-        }
+        public BookService(BookDatabase database) : base(database) {}
 
         public override bool Add(Book book, out string message)
         {
@@ -53,6 +50,20 @@ namespace Library.Service
             }
 
             return booksAsString;
+        }
+        
+        public bool Delete(int id, out string message)
+        {
+            if (Database.Delete(id))
+            {
+                message = $"Книга с id = {id} удалена (нажмите Enter)";
+                
+                return true;
+            }
+            
+            message = $"Книга с id = {id} не найдена (нажмите Enter)";
+
+            return false;
         }
 
         public List<string> GetSelectedElementsAsString(List<Book> elements)

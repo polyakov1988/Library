@@ -6,10 +6,7 @@ namespace Library.Service
 {
     public class AuthorService : Service<AuthorDatabase, Author>
     {
-        public AuthorService()
-        {
-            Database = new AuthorDatabase();
-        }
+        public AuthorService(AuthorDatabase database) : base(database) {}
 
         public override bool Add(Author author, out string message)
         {

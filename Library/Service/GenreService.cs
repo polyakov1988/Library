@@ -6,10 +6,7 @@ namespace Library.Service
 {
     public class GenreService : Service<GenreDatabase, Genre>
     {
-        public GenreService()
-        {
-            Database = new GenreDatabase();
-        }
+        public GenreService(GenreDatabase database) : base(database) {}
 
         public override bool Add(Genre genre, out string message)
         {
